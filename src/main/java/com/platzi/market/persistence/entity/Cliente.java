@@ -8,23 +8,31 @@ import java.util.List;
 public class Cliente {
 
     @Id
-    private Long id;
+    private String id;
     private String nombre;
     private String apellidos;
     private String celular;
     private String direccion;
 
-    @Column(name = "direccion_electronico")
+    @Column(name = "correo_electronico")
     private String correoElectronico;
 
     @OneToMany(mappedBy = "cliente")
     private List<Compra> compras;
 
-    public Long getId() {
+    public List<Compra> getCompras() {
+        return compras;
+    }
+
+    public void setCompras(List<Compra> compras) {
+        this.compras = compras;
+    }
+
+    public String getId() {
         return id;
     }
 
-    public void setId(Long id) {
+    public void setId(String id) {
         this.id = id;
     }
 
