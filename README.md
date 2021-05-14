@@ -34,7 +34,7 @@ Ejemplo de body:
     "state": "P",
     "items": []
 }
-5.Borrar compra: DELETE http://localhost:5000/platzi-market/api/purchases/{id}
+5. Borrar compra: DELETE http://localhost:5000/platzi-market/api/purchases/{id}
  # Estado del proyecto
  1. En desarrollo
  # Caracteristicas futuras
