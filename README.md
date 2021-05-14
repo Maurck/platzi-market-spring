@@ -35,8 +35,10 @@ Ejemplo de body:
     "items": []
 }
 5. Borrar compra: DELETE http://localhost:5000/platzi-market/api/purchases/{id}
+ # Documentacion (swagger)
+ 1. Acceder a traves del siguiente link: http://localhost:5000/platzi-market/api/swagger-ui.html
  # Estado del proyecto
- 1. En desarrollo
+ 1. En desarrollo (80%)
  # Caracteristicas futuras
  1. Dockerización
  2. UPDATE PRODUCT
