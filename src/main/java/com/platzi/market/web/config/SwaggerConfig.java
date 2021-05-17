@@ -29,7 +29,7 @@ public class SwaggerConfig {
         return new ApiInfoBuilder().title("Documentacion de Platzi Market")
                 .description("Endpoints para el funcionamiento de un mercado virtual")
                 .license("Apache 2.0")
-                .version("0.0.8")
+                .version("0.0.9")
                 .build();
     }
 
