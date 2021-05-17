@@ -2,10 +2,7 @@ package com.platzi.market.web.controller;
 
 import com.platzi.market.domain.Product;
 import com.platzi.market.domain.service.ProductService;
-import io.swagger.annotations.ApiOperation;
-import io.swagger.annotations.ApiParam;
-import io.swagger.annotations.ApiResponse;
-import io.swagger.annotations.ApiResponses;
+import io.swagger.annotations.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -19,35 +16,35 @@ public class ProductController {
     @Autowired
     private ProductService productService;
 
-    @ApiOperation("Buscar todos los productos")
+    @ApiOperation(value = "Buscar todos los productos", authorizations = {@Authorization(value = "JWT")})
     @ApiResponse(code = 200, message = "OK")
     @GetMapping("/all")
     public ResponseEntity<List<Product>> getAll(){
         return new ResponseEntity<>(productService.getAll(), HttpStatus.OK);
     }
 
-    @ApiOperation("Obtiene un producto a traves de su id")
+    @ApiOperation(value = "Obtiene un producto a traves de su id", authorizations = {@Authorization(value = "JWT")})
     @ApiResponse(code = 200, message = "OK")
     @GetMapping("/{productId}")
     public ResponseEntity<Product> getProduct(@PathVariable("productId") long productId){
         return ResponseEntity.of(productService.getProduct(productId));
     }
 
-    @ApiOperation("Obtiene un producto a traves del id de su categoria")
+    @ApiOperation(value = "Obtiene un producto a traves del id de su categoria", authorizations = {@Authorization(value = "JWT")})
     @ApiResponse(code = 200, message = "OK")
     @GetMapping("/category/{categoryId}")
     public ResponseEntity<List<Product>> getByCategory(@PathVariable("categoryId") long categoryId){
         return ResponseEntity.of(productService.getByCategory(categoryId));
     }
 
-    @ApiOperation("Guarda un producto nuevo")
+    @ApiOperation(value = "Guarda un producto nuevo", authorizations = {@Authorization(value = "JWT")})
     @ApiResponse(code = 200, message = "OK")
     @PostMapping()
     public ResponseEntity<Product> save(@RequestBody Product product){
         return new ResponseEntity<>(productService.save(product), HttpStatus.CREATED);
     }
 
-    @ApiOperation("Elimina un producto a traves de su id")
+    @ApiOperation(value = "Elimina un producto a traves de su id", authorizations = {@Authorization(value = "JWT")})
     @ApiResponses({
             @ApiResponse(code = 200, message = "OK"),
             @ApiResponse(code = 404, message = "Producto no encontrado")
