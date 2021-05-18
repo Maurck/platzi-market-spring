@@ -4,6 +4,9 @@ import com.platzi.market.domain.dto.AuthenticationRequest;
 import com.platzi.market.domain.dto.AuthenticationResponse;
 import com.platzi.market.domain.service.BitzoneUserDetailsService;
 import com.platzi.market.web.security.JWTUtil;
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.Authorization;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,6 +32,8 @@ public class AuthController {
     @Autowired
     private JWTUtil jwtUtil;
 
+    @ApiOperation(value = "Generar JWT")
+    @ApiResponse(code = 200, message = "OK")
     @PostMapping("/authenticate")
     public ResponseEntity<AuthenticationResponse> createToken(@RequestBody AuthenticationRequest request){
         try{
