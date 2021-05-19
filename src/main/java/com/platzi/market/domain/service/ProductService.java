@@ -2,9 +2,18 @@ package com.platzi.market.domain.service;
 
 import com.platzi.market.domain.Product;
 import com.platzi.market.domain.repository.ProductRepository;
+import com.platzi.market.persistence.entity.Producto;
+import org.apache.poi.hssf.usermodel.HSSFWorkbook;
+import org.apache.poi.ss.usermodel.Cell;
+import org.apache.poi.ss.usermodel.Row;
+import org.apache.poi.ss.usermodel.Sheet;
+import org.apache.poi.ss.usermodel.Workbook;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
@@ -38,5 +47,9 @@ public class ProductService {
             productRepository.delete(productId);
             return true;
         }).orElse(false);
+    }
+
+    public ByteArrayInputStream exportAllData() throws Exception{
+        return productRepository.exportAllData();
     }
 }

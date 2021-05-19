@@ -3,11 +3,16 @@ package com.platzi.market.web.controller;
 import com.platzi.market.domain.Product;
 import com.platzi.market.domain.service.ProductService;
 import io.swagger.annotations.*;
+import org.apache.poi.openxml4j.opc.internal.ContentType;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.io.InputStreamResource;
+import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.ByteArrayInputStream;
 import java.util.List;
 
 @RestController
@@ -57,5 +62,19 @@ public class ProductController {
         }else{
             return new ResponseEntity(HttpStatus.NOT_FOUND);
         }
+    }
+
+    @ApiOperation(value = "Genera un excel con los productos existentes en la base de datos", authorizations = {@Authorization(value = "JWT")})
+    @ApiResponse(code = 200, message = "OK")
+    @GetMapping("/export/all")
+    public ResponseEntity<InputStreamResource> exportAllData() throws Exception{
+
+        ByteArrayInputStream stream = productService.exportAllData();
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.add("Content-Disposition", "attachment; filename=productos.xlsx");
+        headers.setContentType(MediaType.parseMediaType("application/csv"));
+
+        return ResponseEntity.ok().headers(headers).body(new InputStreamResource(stream));
     }
 }
